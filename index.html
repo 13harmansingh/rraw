@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooftop Raw Bar</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
@@ -16,34 +17,60 @@
                 <li><a href="#location">Location</a></li>
             </ul>
         </nav>
+        <div class="menu-icon">&#9776;</div>
     </header>
-    
+
     <section class="hero">
         <div class="hero-text">
-            <h1>Discover Exquisite Cocktails</h1>
+            <h1>Experience the Finest Cocktails</h1>
             <a href="#cocktails" class="cta-button">Explore Menu</a>
         </div>
     </section>
 
     <section id="cocktails" class="cocktails">
-        <h2>Signature Cocktails</h2>
-        <div class="cocktail-list"></div>
+        <h2>Our Signature Cocktails</h2>
+        <div class="cocktail-list">
+            <div class="cocktail-item" data-name="Mojito" data-image="mojito.jpg" data-description="A refreshing mix of rum, mint, lime, and soda.">
+                <img src="mojito.jpg" alt="Mojito">
+                <h3>Mojito</h3>
+            </div>
+            <div class="cocktail-item" data-name="Cosmopolitan" data-image="cosmo.jpg" data-description="A classic mix of vodka, triple sec, lime, and cranberry juice.">
+                <img src="cosmo.jpg" alt="Cosmopolitan">
+                <h3>Cosmopolitan</h3>
+            </div>
+        </div>
     </section>
+
+    <div id="cocktail-modal" class="cocktail-modal">
+        <div class="cocktail-modal-content">
+            <span class="close-btn">&times;</span>
+            <img id="modal-image" src="" alt="">
+            <h2 id="modal-title"></h2>
+            <p id="modal-description"></p>
+        </div>
+    </div>
 
     <section id="reviews" class="reviews">
         <h2>Customer Reviews</h2>
-        <div class="reviews-list"></div>
+        <div class="reviews-list">
+            <div class="review-item">
+                <p>"Amazing cocktails and a stunning view!"</p>
+                <h4>- Alice</h4>
+            </div>
+            <div class="review-item">
+                <p>"A must-visit rooftop bar in Lisbon!"</p>
+                <h4>- Mark</h4>
+            </div>
+        </div>
     </section>
 
     <section id="location" class="location">
-        <h2>Visit Us</h2>
-        <p>Enjoy breathtaking rooftop views in the heart of Lisbon.</p>
+        <h2>Find Us</h2>
+        <p>123 Rooftop Avenue, Lisbon</p>
     </section>
 
     <footer>
-        <p>&copy; 2025 Rooftop Raw Bar. All rights reserved.</p>
+        <p>&copy; 2025 Rooftop Raw Bar. All Rights Reserved.</p>
     </footer>
-    
-    <script src="script.js"></script>
 </body>
 </html>

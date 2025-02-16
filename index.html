@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAW Rooftop Bar - Algés, Lisbon</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navigation -->
+<header>
+    <nav>
+        <div class="logo"><a href="#">RAW</a></div>
+        <ul class="nav-links">
+            <li><a href="#cocktails">Cocktails</a></li>
+            <li><a href="#reservation">Reservation</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>RAW</h1>
+        <p>Where luxury meets the skyline.</p>
+        <a href="#cocktails" class="cta">Explore Our Cocktails</a>
+    </div>
+</section>
+
+<!-- Cocktail Section -->
+<section id="cocktails" class="cocktails">
+    <h2>Our Signature Cocktails</h2>
+    <div class="cocktail-list">
+        <div class="cocktail" data-cocktail="mojito">
+            <img src="mojito.jpg" alt="Mojito">
+            <h3>Mojito</h3>
+        </div>
+        <div class="cocktail" data-cocktail="mango-martini">
+            <img src="mango-martini.jpg" alt="Mango Martini">
+            <h3>Mango Martini</h3>
+        </div>
+        <div class="cocktail" data-cocktail="spicy-margarita">
+            <img src="spicy-margarita.jpg" alt="Spicy Margarita">
+            <h3>Spicy Margarita</h3>
+        </div>
+    </div>
+</section>
+
+<!-- Reservation Section -->
+<section id="reservation">
+    <h2>Book Your Table</h2>
+    <form id="reservation-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <input type="number" name="people" placeholder="Number of People" required>
+        <button type="submit">Reserve Now</button>
+    </form>
+</section>
+
+<!-- Location Section -->
+<section id="location">
+    <h2>Visit Us</h2>
+    <p>Located in the heart of Algés, Lisbon, with breathtaking views.</p>
+    <a href="https://www.google.com/maps?q=alg%C3%A9s+lisbon" target="_blank" class="cta">Get Directions</a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="socials">
+        <a href="https://instagram.com/rooftopraw" target="_blank">Instagram</a>
+        <a href="https://facebook.com/rooftopraw" target="_blank">Facebook</a>
+    </div>
+    <p>&copy; 2025 RAW Rooftop Bar, Algés, Lisbon</p>
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #fafafa;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Navigation */
+header {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+nav .logo a {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+nav .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav .nav-links li a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    transition: color 0.3s;
+}
+
+nav .nav-links li a:hover {
+    color: #ff6f61;
+}
+
+/* Hero Section */
+.hero {
+    background: url('rooftop-bar.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-top: 20px;
+}
+
+.cta {
+    margin-top: 30px;
+    padding: 12px 30px;
+    background-color: #ff6f61;
+    color: white;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.cta:hover {
+    background-color: #e55c50;
+}
+
+/* Cocktail Section */
+.cocktails {
+    background-color: #fff;
+}
+
+.cocktail-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cocktail {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.cocktail img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.cocktail:hover {
+    transform: scale(1.05);
+}
+
+/* Reservation Section */
+#reservation input, #reservation button {
+    padding: 12px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+#reservation button {
+    background-color: #ff6f61;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#reservation button:hover {
+    background-color: #e55c50;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+footer .socials {
+    margin-bottom: 10px;
+}
+
+footer .socials a {
+    color: white;
+    margin: 0 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer .socials a:hover {
+    color: #ff6f61;
+}

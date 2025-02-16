@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooftop Raw Bar</title>
+    <title>Rooftop Raw Bar - Cocktails</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
     <script defer src="script.js"></script>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
         <div class="logo"><a href="#">Rooftop Raw Bar</a></div>
         <nav>
@@ -17,60 +20,39 @@
                 <li><a href="#location">Location</a></li>
             </ul>
         </nav>
-        <div class="menu-icon">&#9776;</div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-text">
-            <h1>Experience the Finest Cocktails</h1>
+            <h1>Discover Exclusive Cocktails</h1>
             <a href="#cocktails" class="cta-button">Explore Menu</a>
         </div>
     </section>
 
+    <!-- Search and Cocktail List -->
     <section id="cocktails" class="cocktails">
-        <h2>Our Signature Cocktails</h2>
-        <div class="cocktail-list">
-            <div class="cocktail-item" data-name="Mojito" data-image="mojito.jpg" data-description="A refreshing mix of rum, mint, lime, and soda.">
-                <img src="mojito.jpg" alt="Mojito">
-                <h3>Mojito</h3>
-            </div>
-            <div class="cocktail-item" data-name="Cosmopolitan" data-image="cosmo.jpg" data-description="A classic mix of vodka, triple sec, lime, and cranberry juice.">
-                <img src="cosmo.jpg" alt="Cosmopolitan">
-                <h3>Cosmopolitan</h3>
-            </div>
-        </div>
+        <input type="text" id="search" placeholder="Search cocktails...">
+        <button id="surprise-btn">Surprise Me</button>
+        <div class="cocktail-list" id="cocktail-list"></div>
     </section>
 
+    <!-- Modal -->
     <div id="cocktail-modal" class="cocktail-modal">
         <div class="cocktail-modal-content">
-            <span class="close-btn">&times;</span>
-            <img id="modal-image" src="" alt="">
-            <h2 id="modal-title"></h2>
+            <button class="close-btn" id="close-modal">&times;</button>
+            <img id="modal-img" src="" alt="">
+            <h2 id="modal-name"></h2>
             <p id="modal-description"></p>
+            <h3>Ingredients:</h3>
+            <ul id="modal-ingredients"></ul>
         </div>
     </div>
 
-    <section id="reviews" class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="reviews-list">
-            <div class="review-item">
-                <p>"Amazing cocktails and a stunning view!"</p>
-                <h4>- Alice</h4>
-            </div>
-            <div class="review-item">
-                <p>"A must-visit rooftop bar in Lisbon!"</p>
-                <h4>- Mark</h4>
-            </div>
-        </div>
-    </section>
-
-    <section id="location" class="location">
-        <h2>Find Us</h2>
-        <p>123 Rooftop Avenue, Lisbon</p>
-    </section>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Rooftop Raw Bar. All Rights Reserved.</p>
+        <p>&copy; 2025 Rooftop Raw Bar, Lisbon</p>
     </footer>
+
 </body>
 </html>

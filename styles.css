@@ -45,6 +45,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: background 0.3s ease-in-out;
+}
+
+header.scrolled {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 header .logo a {
@@ -95,7 +100,7 @@ header nav ul li a {
   animation: fadeIn 2s ease-in-out;
 }
 
-/* Animated Button */
+/* Animated Button with Ripple Effect */
 .cta-button {
   display: inline-block;
   padding: 15px 40px;
@@ -129,6 +134,24 @@ header nav ul li a {
 .cta-button:hover {
   transform: translateY(-5px);
   background: linear-gradient(135deg, #e65749, #c83d3d);
+}
+
+/* Ripple Effect */
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: rippleEffect 0.6s linear;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 /* Frosted Glass Search Bar */

@@ -1,56 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Parallax Effect for Hero Section
-  const hero = document.querySelector(".hero");
-  window.addEventListener("scroll", () => {
-    let scrollPos = window.scrollY;
-    hero.style.backgroundPositionY = `${scrollPos * 0.5}px`;
-  });
+    const modal = document.getElementById("cocktail-modal");
+    const modalTitle = document.getElementById("modal-title");
+    const modalImage = document.getElementById("modal-image");
+    const modalDescription = document.getElementById("modal-description");
+    const closeBtn = document.querySelector(".close-btn");
 
-  // Button Liquid Ripple Effect
-  document.querySelectorAll(".cta-button").forEach(button => {
-    button.addEventListener("click", function (e) {
-      let ripple = document.createElement("span");
-      ripple.classList.add("ripple");
-      this.appendChild(ripple);
-
-      let x = e.clientX - this.offsetLeft;
-      let y = e.clientY - this.offsetTop;
-      ripple.style.left = `${x}px`;
-      ripple.style.top = `${y}px`;
-
-      setTimeout(() => {
-        ripple.remove();
-      }, 600);
+    document.querySelectorAll(".cocktail-item").forEach(item => {
+        item.addEventListener("click", () => {
+            modalTitle.textContent = item.getAttribute("data-name");
+            modalImage.src = item.getAttribute("data-image");
+            modalDescription.textContent = item.getAttribute("data-description");
+            modal.classList.add("show");
+        });
     });
-  });
 
-  // Modal Controls
-  const modal = document.querySelector(".cocktail-modal");
-  const closeModal = document.querySelector(".close-btn");
-
-  document.querySelectorAll(".cocktail-card").forEach(card => {
-    card.addEventListener("click", function () {
-      modal.classList.add("show");
+    closeBtn.addEventListener("click", () => {
+        modal.classList.remove("show");
     });
-  });
 
-  closeModal.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
-
-  modal.addEventListener("click", (e) => {
-    if (!e.target.closest(".cocktail-modal-content")) {
-      modal.classList.remove("show");
-    }
-  });
-
-  // Search Bar Effects
-  const searchInput = document.querySelector(".search-bar input");
-  searchInput.addEventListener("focus", () => {
-    document.querySelector(".search-bar").classList.add("active");
-  });
-
-  searchInput.addEventListener("blur", () => {
-    document.querySelector(".search-bar").classList.remove("active");
-  });
+    modal.addEventListener("click", (e) => {
+        if (!e.target.closest(".cocktail-modal-content")) {
+            modal.classList.remove("show");
+        }
+    });
 });

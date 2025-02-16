@@ -1,83 +1,111 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAW Rooftop Bar - Algés, Lisbon</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
-</head>
-<body>
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Search, X } from "lucide-react";
+import { Howl } from "howler";
+import cocktailData from "@/data/cocktails.json";
 
-<!-- Navigation -->
-<header>
-    <nav>
-        <div class="logo"><a href="#">RAW</a></div>
-        <ul class="nav-links">
-            <li><a href="#cocktails">Cocktails</a></li>
-            <li><a href="#reservation">Reservation</a></li>
-            <li><a href="#location">Location</a></li>
-        </ul>
-    </nav>
-</header>
+export default function Cocktails() {
+  const [selectedCocktail, setSelectedCocktail] = useState(null);
+  const [search, setSearch] = useState("");
+  const [filteredCocktails, setFilteredCocktails] = useState(cocktailData);
+  const [recommendation, setRecommendation] = useState(null);
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-content">
-        <h1>RAW</h1>
-        <p>Where luxury meets the skyline.</p>
-        <a href="#cocktails" class="cta">Explore Our Cocktails</a>
+  useEffect(() => {
+    if (search) {
+      setFilteredCocktails(
+        cocktailData.filter((cocktail) =>
+          cocktail.name.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    } else {
+      setFilteredCocktails(cocktailData);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    if (filteredCocktails.length) {
+      setRecommendation(
+        filteredCocktails[Math.floor(Math.random() * filteredCocktails.length)]
+      );
+    }
+  }, [filteredCocktails]);
+
+  const openCocktail = (cocktail) => {
+    setSelectedCocktail(cocktail);
+    try {
+      const sound = new Howl({ src: ["/sounds/shake.mp3"] });
+      sound.play();
+    } catch (error) {
+      console.error("Sound playback error:", error);
+    }
+  };
+
+  const closeCocktail = (e) => {
+    if (!e.target.closest(".modal-content")) {
+      setSelectedCocktail(null);
+    }
+  };
+
+  const surpriseMe = () => {
+    if (cocktailData.length > 0) {
+      setRecommendation(
+        cocktailData[Math.floor(Math.random() * cocktailData.length)]
+      );
+    }
+  };
+
+  return (
+    <div className="p-6 bg-gray-900 min-h-screen text-white">
+      <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mb-4 flex items-center gap-2 border-b border-gray-700 pb-2">
+        <Search className="text-gray-400" />
+        <Input
+          type="text"
+          placeholder="Search cocktails..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="bg-gray-800 text-white border-none focus:ring-2 focus:ring-blue-500 rounded-lg px-4 py-2"
+        />
+      </motion.div>
+      <Button onClick={surpriseMe} className="mb-4 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white py-2 px-6 rounded-lg shadow-lg transform transition hover:scale-105">Surprise Me</Button>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {filteredCocktails.map((cocktail) => (
+          <motion.div key={cocktail.id} whileHover={{ scale: 1.05 }} className="cursor-pointer" onClick={() => openCocktail(cocktail)}>
+            <Card className="bg-gray-800 shadow-lg rounded-2xl overflow-hidden transform transition hover:shadow-xl">
+              <img src={cocktail.image || "/default.jpg"} alt={cocktail.name} className="w-full h-48 object-cover transition duration-300 ease-in-out hover:opacity-80" />
+              <CardContent className="p-4">
+                <h2 className="text-lg font-bold text-center">{cocktail.name}</h2>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </motion.div>
+      {selectedCocktail && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-6 backdrop-blur-md" onClick={closeCocktail}>
+          <motion.div initial={{ scale: 0.8 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }} className="bg-gray-800 p-6 rounded-2xl shadow-xl relative max-w-lg modal-content">
+            <button onClick={() => setSelectedCocktail(null)} className="absolute top-3 right-3 text-gray-300 hover:text-white transition">
+              <X className="w-6 h-6" />
+            </button>
+            <img src={selectedCocktail.image || "/default.jpg"} alt={selectedCocktail.name} className="w-full h-48 object-cover rounded-lg shadow-md" />
+            <h2 className="text-xl font-bold mt-4 text-center text-white">{selectedCocktail.name}</h2>
+            <p className="mt-2 text-gray-300 text-center">{selectedCocktail.description}</p>
+            <h3 className="mt-4 font-semibold text-white">Ingredients:</h3>
+            <ul className="list-disc list-inside text-gray-400 text-sm">
+              {selectedCocktail.ingredients.map((ingredient, index) => (
+                <li key={index}>{ingredient}</li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
+      )}
+      {recommendation && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="mt-6 p-4 bg-gray-800 rounded-2xl text-center shadow-lg">
+          <h3 className="text-lg font-bold text-white">Recommended for You:</h3>
+          <p className="text-gray-400">{recommendation.name}</p>
+        </motion.div>
+      )}
     </div>
-</section>
-
-<!-- Cocktail Section -->
-<section id="cocktails" class="cocktails">
-    <h2>Our Signature Cocktails</h2>
-    <div class="cocktail-list">
-        <div class="cocktail" data-cocktail="mojito">
-            <img src="mojito.jpg" alt="Mojito">
-            <h3>Mojito</h3>
-        </div>
-        <div class="cocktail" data-cocktail="mango-martini">
-            <img src="mango-martini.jpg" alt="Mango Martini">
-            <h3>Mango Martini</h3>
-        </div>
-        <div class="cocktail" data-cocktail="spicy-margarita">
-            <img src="spicy-margarita.jpg" alt="Spicy Margarita">
-            <h3>Spicy Margarita</h3>
-        </div>
-    </div>
-</section>
-
-<!-- Reservation Section -->
-<section id="reservation">
-    <h2>Book Your Table</h2>
-    <form id="reservation-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="date" name="date" required>
-        <input type="time" name="time" required>
-        <input type="number" name="people" placeholder="Number of People" required>
-        <button type="submit">Reserve Now</button>
-    </form>
-</section>
-
-<!-- Location Section -->
-<section id="location">
-    <h2>Visit Us</h2>
-    <p>Located in the heart of Algés, Lisbon, with breathtaking views.</p>
-    <a href="https://www.google.com/maps?q=alg%C3%A9s+lisbon" target="_blank" class="cta">Get Directions</a>
-</section>
-
-<!-- Footer -->
-<footer>
-    <div class="socials">
-        <a href="https://instagram.com/rooftopraw" target="_blank">Instagram</a>
-        <a href="https://facebook.com/rooftopraw" target="_blank">Facebook</a>
-    </div>
-    <p>&copy; 2025 RAW Rooftop Bar, Algés, Lisbon</p>
-</footer>
-
-<script src="scripts.js"></script>
-</body>
-</html>
+  );
+}

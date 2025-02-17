@@ -9,22 +9,23 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Body and Typography */
+/* Body and Fonts */
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #111;
-  color: #fff;
+  background-color: #fff;
+  color: #333;
   line-height: 1.8;
-  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
 }
 
-/* Frosted Glass Effect */
-.frosted {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Header */
@@ -33,87 +34,145 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: #fff;
   padding: 20px 40px;
-  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: all 0.3s ease-in-out;
-}
-
-header.scrolled {
-  background: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 header .logo a {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #ff6f61;
+  font-size: 2.5rem;
+  color: #333;
+  font-weight: 700;
 }
 
 header nav ul {
   list-style: none;
   display: flex;
-  gap: 30px;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+header nav ul li {
+  margin-left: 30px;
 }
 
 header nav ul li a {
   font-size: 1rem;
+  color: #333;
   font-weight: 500;
-  color: #fff;
-  transition: color 0.3s ease-in-out;
+  transition: color 0.3s ease;
 }
 
 header nav ul li a:hover {
   color: #ff6f61;
 }
 
+/* Hamburger Menu */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 2rem;
+}
+
+header nav ul.active {
+  display: block;
+  text-align: center;
+}
+
+header nav ul.active li {
+  margin: 15px 0;
+}
+
 /* Hero Section */
 .hero {
   background: url('rooftop-bar.jpg') center/cover no-repeat;
   height: 100vh;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
   position: relative;
-  overflow: hidden;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 .hero-text {
-  position: relative;
   z-index: 2;
+  padding: 0 20px;
   max-width: 600px;
 }
 
 .hero-text h1 {
   font-size: 4rem;
+  margin-bottom: 20px;
   font-weight: 700;
-  animation: fadeIn 1.5s ease-in-out;
+}
+
+.hero-text p {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
 }
 
 .cta-button {
-  display: inline-block;
   padding: 15px 40px;
-  background: linear-gradient(45deg, #ff6f61, #e65749);
+  background-color: #ff6f61;
   color: white;
   font-size: 1.2rem;
   font-weight: 600;
   border-radius: 5px;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease;
 }
 
 .cta-button:hover {
+  background-color: #e65749;
   transform: translateY(-5px);
 }
 
-/* Cocktails Section */
-.cocktails {
-  background: #181818;
+/* About Us Section */
+.about {
   padding: 80px 40px;
   text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.about p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Signature Cocktails Section */
+.cocktails {
+  padding: 80px 40px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.cocktails h2 {
+  font-size: 3rem;
+  margin-bottom: 50px;
+  font-weight: 700;
 }
 
 .cocktail-list {
@@ -123,80 +182,157 @@ header nav ul li a:hover {
 }
 
 .cocktail-item {
-  background: #222;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   padding: 30px;
   text-align: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
 
 .cocktail-item:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .cocktail-item img {
   width: 100%;
+  height: auto;
   border-radius: 8px;
   margin-bottom: 20px;
 }
 
-/* Cocktail Modal */
-.cocktail-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+.cocktail-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.cocktail-item p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.cocktail-item a {
+  color: #ff6f61;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.cocktail-item a:hover {
+  color: #e65749;
+}
+
+/* Reviews Section */
+.reviews {
+  padding: 80px 40px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.reviews h2 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.reviews-list {
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
+  gap: 40px;
 }
 
-.cocktail-modal.show {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.cocktail-modal-content {
-  background: #222;
+.review-item {
+  background-color: #f9f9f9;
   padding: 30px;
-  border-radius: 8px;
-  max-width: 500px;
-  width: 80%;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
   text-align: center;
-  transform: scale(0.8);
-  transition: transform 0.3s ease-in-out;
 }
 
-.cocktail-modal.show .cocktail-modal-content {
-  transform: scale(1);
+.review-item p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
 }
 
-.close-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 2rem;
-  cursor: pointer;
+.review-item h4 {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
-.close-btn:hover {
+/* Location Section */
+.location {
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.location h2 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.location p {
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+  line-height: 1.6;
+}
+
+.map {
+  margin-top: 30px;
+}
+
+iframe {
+  border: 0;
+  border-radius: 12px;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 40px 0;
+}
+
+footer .social-icons {
+  margin-top: 20px;
+}
+
+footer .social-icons a {
+  margin: 0 10px;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+footer .social-icons a:hover {
   color: #ff6f61;
 }
 
-/* Keyframe Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* Media Queries */
+@media (max-width: 768px) {
+  header nav ul {
+    display: none; /* Hide the menu by default */
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  header nav ul.active {
+    display: block; /* Show the menu when activated */
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem; /* Smaller text for mobile */
+  }
+
+  .cocktail-list {
+    grid-template-columns: 1fr 1fr; /* 2 items per row */
+  }
+
+  .review-item {
+    max-width: 100%;
   }
 }

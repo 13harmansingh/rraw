@@ -1,66 +1,80 @@
-// Smooth Scrolling for Navigation
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// Smooth scrolling navigation
+document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+            behavior: 'smooth'
         });
     });
 });
 
-// Modal for Cocktail Details
-const cocktailItems = document.querySelectorAll('.cocktail-item');
-const cocktailModal = document.createElement('div');
-cocktailModal.classList.add('cocktail-modal');
-document.body.appendChild(cocktailModal);
+// Cocktail Pop-up Logic
+const cocktailItems = document.querySelectorAll('.cocktail');
+const popupContainer = document.createElement('div');
+popupContainer.classList.add('popup-container');
+document.body.appendChild(popupContainer);
 
 cocktailItems.forEach(item => {
-    item.addEventListener('click', function() {
-        const cocktailId = this.getAttribute('data-cocktail');
-        const cocktailName = this.querySelector('h3').textContent;
-        const cocktailDescription = this.querySelector('p').textContent;
-        const cocktailImage = this.querySelector('img').src;
-        const ingredients = this.getAttribute('data-ingredients');
-        const instructions = this.getAttribute('data-instructions');
-
-        // Populate the modal with cocktail details
-        cocktailModal.innerHTML = `
-            <div class="cocktail-modal-content">
-                <span class="close-btn">&times;</span>
-                <h3>${cocktailName}</h3>
-                <img src="${cocktailImage}" alt="${cocktailName}">
-                <p>${cocktailDescription}</p>
-                <h4>Ingredients</h4>
-                <ul>
-                    ${ingredients.split(',').map(ingredient => `<li>${ingredient}</li>`).join('')}
-                </ul>
-                <h4>How it's Made</h4>
-                <p>${instructions}</p>
-            </div>
-        `;
-        cocktailModal.style.display = 'block';
+    item.addEventListener('click', () => {
+        const cocktail = item.getAttribute('data-cocktail');
+        showPopup(cocktail);
     });
 });
 
-// Close Modal
-cocktailModal.addEventListener('click', function(e) {
-    if (e.target === cocktailModal || e.target.classList.contains('close-btn')) {
-        cocktailModal.style.display = 'none';
-    }
-});
+function showPopup(cocktail) {
+    const popupContent = document.createElement('div');
+    popupContent.classList.add('popup-content');
 
-// Mobile Navigation Toggle
-const menuIcon = document.querySelector('.menu-icon');
-const navMenu = document.querySelector('header nav ul');
+    const closeButton = document.createElement('span');
+    closeButton.textContent = '×';
+    closeButton.classList.add('close-button');
+    closeButton.addEventListener('click', closePopup);
 
-menuIcon.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
+    const cocktailDetails = getCocktailDetails(cocktail);
 
-// Optional: Close menu when a menu item is clicked on mobile
-navMenu.addEventListener('click', () => {
-    if (window.innerWidth < 768) {
-        navMenu.classList.remove('active');
-    }
-});
+    popupContent.innerHTML = `
+        <h2>${cocktailDetails.name}</h2>
+        <img src="${cocktailDetails.image}" alt="${cocktailDetails.name}">
+        <p>${cocktailDetails.description}</p>
+        <h3>Ingredients:</h3>
+        <ul>
+            ${cocktailDetails.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+        </ul>
+        <h3>Method:</h3>
+        <p>${cocktailDetails.method}</p>
+    `;
+    popupContent.appendChild(closeButton);
+    popupContainer.appendChild(popupContent);
+    popupContainer.classList.add('active');
+}
+
+function closePopup() {
+    popupContainer.classList.remove('active');
+}
+
+function getCocktailDetails(cocktail) {
+    const cocktails = {
+        mojito: {
+            name: 'Mojito',
+            image: 'mojito.jpg',
+            description: 'A refreshing cocktail with lime, mint, and rum.',
+            ingredients: ['White rum', 'Sugar', 'Mint leaves', 'Lime'],
+            method: 'Muddle mint leaves with sugar and lime. Add rum and ice, then top with soda water.'
+        },
+        "mango-martini": {
+            name: 'Mango Martini',
+            image: 'mango-martini.jpg',
+            description: 'A tropical twist on the classic martini.',
+            ingredients: ['Mango puree', 'Vodka', 'Lime juice'],
+            method: 'Shake mango puree, vodka, and lime juice with ice, and strain into a martini glass.'
+        },
+        "spicy-margarita": {
+            name: 'Spicy Margarita',
+            image: 'spicy-margarita.jpg',
+            description: 'A spicy twist on the traditional margarita.',
+            ingredients: ['Tequila', 'Lime juice', 'Triple sec', 'Jalapeno'],
+            method: 'Shake tequila, lime juice, and triple sec with jalapeno slices, and strain into a glass.'
+        }
+    };
+    return cocktails[cocktail];
+}

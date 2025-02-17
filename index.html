@@ -3,68 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rooftop Raw Bar</title>
+    <title>RAW Rooftop Bar - Algés, Lisbon</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="logo"><a href="#">Rooftop Raw Bar</a></div>
-        <nav>
-            <ul>
-                <li><a href="#cocktails">Cocktails</a></li>
-                <li><a href="#reviews">Reviews</a></li>
-                <li><a href="#location">Location</a></li>
-            </ul>
-        </nav>
-        <div class="menu-icon">&#9776;</div>
-    </header>
-    
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Experience the Finest Rooftop Cocktails</h1>
-            <button class="cta-button" onclick="surpriseMe()">Surprise Me</button>
+
+<!-- Navigation -->
+<header>
+    <nav>
+        <div class="logo"><a href="#">RAW</a></div>
+        <ul class="nav-links">
+            <li><a href="#cocktails">Cocktails</a></li>
+            <li><a href="#reservation">Reservation</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>RAW</h1>
+        <p class="tagline">Where luxury meets the skyline. Follow us on Instagram: <a href="https://instagram.com/rooftopraw" target="_blank">@rooftopraw</a></p>
+        <a href="#cocktails" class="cta">Explore Our Cocktails</a>
+    </div>
+</section>
+
+<!-- Cocktail Section -->
+<section id="cocktails" class="cocktails">
+    <h2>Our Signature Cocktails</h2>
+    <div class="cocktail-list">
+        <div class="cocktail" data-cocktail="mojito">
+            <img src="mojito.jpg" alt="Mojito">
+            <h3>Mojito</h3>
         </div>
-    </section>
-
-    <section id="cocktails" class="cocktails">
-        <h2>Our Signature Cocktails</h2>
-        <div class="cocktail-list" id="cocktail-list"></div>
-    </section>
-
-    <section id="reviews" class="reviews">
-        <h2>Customer Reviews</h2>
-        <div class="reviews-list">
-            <div class="review-item">"Amazing cocktails and stunning view!"</div>
-            <div class="review-item">"The best rooftop experience in Lisbon!"</div>
+        <div class="cocktail" data-cocktail="mango-martini">
+            <img src="mango-martini.jpg" alt="Mango Martini">
+            <h3>Mango Martini</h3>
         </div>
-    </section>
-
-    <section id="location" class="location">
-        <h2>Find Us</h2>
-        <p>Located in the heart of Lisbon, enjoy the best views and drinks.</p>
-    </section>
-    
-  <div class="cocktail-modal" id="cocktail-modal">
-        <div class="cocktail-modal-content">
-            <span class="close-btn">&times;</span>
-            <img id="modal-img" src="" alt="Cocktail">
-            <h2 id="modal-title"></h2>
-            <p id="modal-description"></p>
-            <h3>Ingredients:</h3>
-            <ul id="modal-ingredients"></ul>
+        <div class="cocktail" data-cocktail="spicy-margarita">
+            <img src="spicy-margarita.jpg" alt="Spicy Margarita">
+            <h3>Spicy Margarita</h3>
         </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2025 Rooftop Raw Bar. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-        </div>
-        
-    </footer>
-    
-    <script src="script.js"></script>
+</section>
+
+<!-- Reservation Section -->
+<section id="reservation">
+    <h2>Book Your Table</h2>
+    <form id="reservation-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="date" name="date" required>
+        <input type="time" name="time" required>
+        <input type="number" name="people" placeholder="Number of People" required>
+        <button type="submit">Reserve Now</button>
+    </form>
+</section>
+
+<!-- Location Section -->
+<section id="location">
+    <h2>Visit Us</h2>
+    <p>Located in the heart of Algés, Lisbon, with breathtaking views.</p>
+    <a href="https://www.google.com/maps?q=alg%C3%A9s+lisbon" target="_blank" class="cta">Get Directions</a>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="socials">
+        <a href="https://instagram.com/rooftopraw" target="_blank">Instagram</a>
+        <a href="https://facebook.com/rooftopraw" target="_blank">Facebook</a>
+    </div>
+    <p>&copy; 2025 RAW Rooftop Bar, Algés, Lisbon</p>
+</footer>
+
+<script src="scripts.js"></script>
 </body>
 </html>
